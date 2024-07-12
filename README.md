@@ -228,6 +228,126 @@ File Name: `AContingencyByDoc`
                                    size=14)
       )
 
+# Plot the Outcome Contingent
+
+File Name: `OContingencyByDoc.pdf`
+```
+  # Transform the data to a long format and filter the categories
+    Ocontingent_categories <- c("Outcome Contingent", 
+                                "Outcome Contingent - Office-seeking",
+                                "Outcome Contingent - Vote-Seeking", 
+                                "Outcome Contingent - Policy-Seeking"
+    )
+    
+    
+    
+    data_long <- data %>%
+      pivot_longer(cols = -`Reform Document`, names_to = "Category", values_to = "Count") %>%
+      filter(Category %in% Ocontingent_categories) 
+    
+    
+    # Rename the Outcome Contingent categories
+    data_long <- data_long %>%
+      mutate(Category = recode(Category,
+                               "Outcome Contingent" = "General", 
+                               "Outcome Contingent - Office-seeking" = "OC Office-Seeking",
+                               "Outcome Contingent - Vote-Seeking" = "OC Vote-Seeking", 
+                               "Outcome Contingent - Policy-Seeking" = "OC Policy-Seeking"))
+    
+    
+    # Create the ggplot
+    ggplot(data_long, aes(x = `Reform Document`, y = Count, fill = Category)) +
+      geom_bar(stat = "identity", position = "stack", na.rm = TRUE) +
+      coord_flip() +
+      theme_void() +
+      labs(title = " ",
+           x = " ",
+           y = " ",
+           fill = "Category") +
+      scale_x_discrete(limits = rev(custom_order)) +
+      scale_y_continuous(breaks = seq(0, max(data_long$Count), by = 1)) + # Specify y-axis intervals
+      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + # Reorder the legend so colors apear in same order in figure as in lengend
+      scale_fill_grey() +
+      theme_bw() +
+      theme( # Facet_wrap labels
+        strip.text.x = element_text(
+          size = 16, color = "black", face = "bold"
+        ),
+        strip.text.y = element_text(
+          size = 12, color = "black", face = "bold"
+        ),
+        strip.background=element_rect(fill=NA, color=NA),
+        # Legend labels
+        legend.title = element_text(color = "black", size = 16, face = "bold"),
+        legend.text = element_text(color = "black", size = 14, face = "bold"), 
+        legend.position="bottom",
+        axis.text.x = element_text(color="black", 
+                                   size=12),
+        axis.text.y = element_text(face="bold", color="black", 
+                                   size=14)
+      )
+
+```
+
+# Plot the Reform Enactment
+File Name: `REByDoc.pdf`
+
+```
+ # Transform the data to a long format and filter the categories
+    re_categories <- c("Reform Enactment - Procedure",
+                      "Reform Enactment  Legislation",
+                      "Reform Enactment - Referendum"
+    )
+    
+    
+    
+    data_long <- data %>%
+      pivot_longer(cols = -`Reform Document`, names_to = "Category", values_to = "Count") %>%
+      filter(Category %in% re_categories) 
+    
+    # Rename the Reform Enactment categories
+    data_long <- data_long %>%
+      mutate(Category = recode(Category,
+                               "Reform Enactment - Procedure" = "Procedure",
+                               "Reform Enactment  Legislation" = "Legislation",
+                               "Reform Enactment - Referendum" = "Referendum"))
+    
+
+    
+    # Create the ggplot
+    ggplot(data_long, aes(x = `Reform Document`, y = Count, fill = Category)) +
+      geom_bar(stat = "identity", position = "stack", na.rm = TRUE) +
+      coord_flip() +
+      theme_void() +
+      labs(title = " ",
+           x = " ",
+           y = " ",
+           fill = "Category") +
+      scale_x_discrete(limits = rev(custom_order)) +
+      scale_y_continuous(breaks = seq(0, max(data_long$Count), by = 1)) + # Specify y-axis intervals
+      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + # Reorder the legend so colors apear in same order in figure as in legend
+      scale_fill_grey() +
+      theme_bw() +
+      theme( # Facet_wrap labels
+        strip.text.x = element_text(
+          size = 16, color = "black", face = "bold"
+        ),
+        strip.text.y = element_text(
+          size = 12, color = "black", face = "bold"
+        ),
+        strip.background=element_rect(fill=NA, color=NA),
+        # Legend labels
+        legend.title = element_text(color = "black", size = 16, face = "bold"),
+        legend.text = element_text(color = "black", size = 14, face = "bold"), 
+        legend.position="bottom",
+        axis.text.x = element_text(color="black", 
+                                   size=12),
+        axis.text.y = element_text(face="bold", color="black", 
+                                   size=14)
+      )
+
+
+```
     
     
 ```
