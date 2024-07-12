@@ -168,7 +168,7 @@ File Name: `anomalousByDoc.pdf`
 
 ```
 
-#Plot the Act Contignent
+# Plot the Act Contignent
 
 File Name: `AContingencyByDoc`
 
@@ -227,7 +227,7 @@ File Name: `AContingencyByDoc`
         axis.text.y = element_text(face="bold", color="black", 
                                    size=14)
       )
-
+```
 # Plot the Outcome Contingent
 
 File Name: `OContingencyByDoc.pdf`
