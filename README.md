@@ -15,18 +15,18 @@ This is the code used to create the various Figures in Chapter 5.
 setwd("~/_rCodesData/chapter3InterviewsReform")
 ```
 
-# Load the necessary package to wrangle the data 
+## Load the necessary package to wrangle the data 
 ```
 library(tidyverse)
 ```
 
-# Load the data
+## Load the data
 ```
 data <- read_csv("docCodeMatrixBrowser_MAXQDA.csv")
 ```
 
 
-# Transform the data for nicer Figures
+## Transform the data for nicer Figures
 ```
 #Create a custom order for the Reform documents by year
 custom_order <- c("LPC Proposed Constitution 2006",
@@ -46,7 +46,7 @@ custom_order <- c("LPC Proposed Constitution 2006",
 data$`Reform Document` <- factor(data$`Reform Document`, levels = custom_order)
 ```
 
-# Plot the Inherent Conditions 
+## Plot the Inherent Conditions 
 File Name `inherentByDoc.pdf`
 
 ```
@@ -106,7 +106,7 @@ data_long <- data_long %>%
 ```
 
 
-# Plot the Anomalous outcomes
+## Plot the Anomalous outcomes
 File Name: `anomalousByDoc.pdf`
 ```
     # Transform the data to a long format and filter the categories
@@ -168,7 +168,7 @@ File Name: `anomalousByDoc.pdf`
 
 ```
 
-# Plot the Act Contignent
+## Plot the Act Contignent
 
 File Name: `AContingencyByDoc`
 
@@ -228,7 +228,7 @@ File Name: `AContingencyByDoc`
                                    size=14)
       )
 ```
-# Plot the Outcome Contingent
+## Plot the Outcome Contingent
 
 File Name: `OContingencyByDoc.pdf`
 ```
@@ -289,7 +289,7 @@ File Name: `OContingencyByDoc.pdf`
 
 ```
 
-# Plot the Reform Enactment
+## Plot the Reform Enactment
 File Name: `REByDoc.pdf`
 
 ```
