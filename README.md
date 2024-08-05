@@ -197,6 +197,7 @@ File Name: `AContingencyByDoc`
     
     
     # Create the ggplot
+ # Create the ggplot
     ggplot(data_long, aes(x = `Reform Document`, y = Count, fill = Category)) +
       geom_bar(stat = "identity", position = "stack", na.rm = TRUE) +
       coord_flip() +
@@ -205,27 +206,27 @@ File Name: `AContingencyByDoc`
            x = " ",
            y = " ",
            fill = "Category") +
-      scale_x_discrete(limits = rev(custom_order)) +
-      scale_y_continuous(breaks = seq(0, max(data_long$Count), by = 1)) + # Specify y-axis intervals
-      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + # Reorder the legend so colors apear in same order in figure as in lengend
+      scale_x_discrete(limits = rev(levels(data_long$`Reform Document`))) +
+      scale_y_continuous(
+        breaks = function(x) seq(0, ceiling(max(x)), by = 1),
+        expand = expansion(mult = c(0, 0.1))
+      ) +  # Add some space above the highest bar
+      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + 
       scale_fill_grey() +
       theme_bw() +
-      theme( # Facet_wrap labels
+      theme(
         strip.text.x = element_text(
           size = 16, color = "black", face = "bold"
         ),
         strip.text.y = element_text(
           size = 12, color = "black", face = "bold"
         ),
-        strip.background=element_rect(fill=NA, color=NA),
-        # Legend labels
+        strip.background = element_rect(fill = NA, color = NA),
         legend.title = element_text(color = "black", size = 16, face = "bold"),
         legend.text = element_text(color = "black", size = 14, face = "bold"), 
-        legend.position="bottom",
-        axis.text.x = element_text(color="black", 
-                                   size=12),
-        axis.text.y = element_text(face="bold", color="black", 
-                                   size=14)
+        legend.position = "bottom",
+        axis.text.x = element_text(color = "black", size = 12),
+        axis.text.y = element_text(face = "bold", color = "black", size = 14)
       )
 ```
 ## Plot the Outcome Contingent
@@ -265,27 +266,28 @@ File Name: `OContingencyByDoc.pdf`
            y = " ",
            fill = "Category") +
       scale_x_discrete(limits = rev(custom_order)) +
-      scale_y_continuous(breaks = seq(0, max(data_long$Count), by = 1)) + # Specify y-axis intervals
-      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + # Reorder the legend so colors apear in same order in figure as in lengend
+      scale_y_continuous(
+        breaks = function(x) seq(0, ceiling(max(x)), by = 1),
+        expand = expansion(mult = c(0, 0.1))
+      )  +
+      guides(fill = guide_legend(reverse = TRUE, title = NULL)) + 
       scale_fill_grey() +
       theme_bw() +
-      theme( # Facet_wrap labels
+      theme(
         strip.text.x = element_text(
           size = 16, color = "black", face = "bold"
         ),
         strip.text.y = element_text(
           size = 12, color = "black", face = "bold"
         ),
-        strip.background=element_rect(fill=NA, color=NA),
-        # Legend labels
+        strip.background = element_rect(fill = NA, color = NA),
         legend.title = element_text(color = "black", size = 16, face = "bold"),
         legend.text = element_text(color = "black", size = 14, face = "bold"), 
-        legend.position="bottom",
-        axis.text.x = element_text(color="black", 
-                                   size=12),
-        axis.text.y = element_text(face="bold", color="black", 
-                                   size=14)
+        legend.position = "bottom",
+        axis.text.x = element_text(color = "black", size = 12),
+        axis.text.y = element_text(face = "bold", color = "black", size = 14)
       )
+    
 
 ```
 
