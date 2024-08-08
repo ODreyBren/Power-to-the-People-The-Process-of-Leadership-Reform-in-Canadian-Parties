@@ -7,7 +7,7 @@ The party documents were collected between July 2022 and December 2023. To prote
 This is the code used to create the various Figures in Chapter 5.
 
 ## Research Questions
-** COMING SOON
+** See Table 17 and Table 24 in above files
 
 # Code
 ```R
