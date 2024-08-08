@@ -58,20 +58,22 @@ data_long <- data %>%
 inherent_categories <- c("Inherent General", 
                          "Inherent Internal Party Logistics", 
                          "Inherent Party Goals", 
-                         "Inherent Technology")
+                         "Inherent Technology", 
+                         "Inherent Finance Laws")
 
 data_long <- data %>%
   pivot_longer(cols = -`Reform Document`, names_to = "Category", values_to = "Count") %>%
   filter(Category %in% inherent_categories)
 
 
-# Rename the anomalous categories
+# Rename the inherent categories
 data_long <- data_long %>%
   mutate(Category = recode(Category,
                            "Inherent General" = "General",
                            "Inherent Internal Party Logistics" = "Internal Logistics",
                            "Inherent Party Goals" = "Party Goals",
-                           "Inherent Technology" = "Technology"))
+                           "Inherent Technology" = "Technology", 
+                           "Inherent Finance Laws" = "Finance Laws"))
 
   # Create the ggplot
             ggplot(data_long, aes(x = `Reform Document`, y = Count, fill = Category)) +
