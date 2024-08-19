@@ -28,6 +28,10 @@ data <- read_csv("docCodeMatrixBrowser_MAXQDA.csv")
 
 ## Transform the data for nicer Figures
 ```
+#rename for figures
+data$`Reform Document`[data$`Reform Document` == "NB Reform annoucement Website"] <- "NB Reform annoucement Website 2011"
+data$`Reform Document`[data$`Reform Document` == "NB Reform consultation report"] <- "NB Reform consultation report 2011"
+
 #Create a custom order for the Reform documents by year
 custom_order <- c("LPC Proposed Constitution 2006",
                   "LPC Delegate Reform 2006",
